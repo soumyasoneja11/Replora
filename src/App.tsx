@@ -49,8 +49,16 @@ function App() {
   const playIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const playOnNextResult = useRef(true);
   const appliedResult = useRef<SimulationResult | null>(null);
+  const playbackEpoch = useRef(0);
+  const resultEpoch = useRef(0);
+  const seenResult = useRef<SimulationResult | null>(null);
   const animationOnRef = useRef(animationOn);
   animationOnRef.current = animationOn;
+
+  if (simResult !== seenResult.current) {
+    seenResult.current = simResult;
+    resultEpoch.current = playbackEpoch.current;
+  }
 
   const stopPlayback = useCallback(() => {
     if (playIntervalRef.current) {
@@ -60,17 +68,31 @@ function App() {
     setIsPlaying(false);
   }, []);
 
+  const claimPlayback = useCallback(() => {
+    playbackEpoch.current += 1;
+  }, []);
+
   const startPlayback = useCallback((result: SimulationResult, fromIndex: number) => {
+    const epoch = ++playbackEpoch.current;
     stopPlayback();
     let idx = fromIndex;
     const len = result.trace.length;
     const speed = len > 1000 ? 5 : len > 500 ? 10 : len > 200 ? 20 : len > 50 ? 50 : 80;
     const interval = setInterval(() => {
+      if (playbackEpoch.current !== epoch) {
+        clearInterval(interval);
+        if (playIntervalRef.current === interval) {
+          playIntervalRef.current = null;
+        }
+        return;
+      }
       setPlaybackIndex(idx);
       idx++;
       if (idx >= len) {
         clearInterval(interval);
-        playIntervalRef.current = null;
+        if (playIntervalRef.current === interval) {
+          playIntervalRef.current = null;
+        }
         setIsPlaying(false);
       }
     }, speed);
@@ -83,6 +105,9 @@ function App() {
       return;
     }
     appliedResult.current = simResult;
+    if (playbackEpoch.current !== resultEpoch.current) {
+      return;
+    }
     const shouldPlay =
       playOnNextResult.current &&
       animationOnRef.current &&
@@ -103,6 +128,7 @@ function App() {
     if (parsedSeed === null) {
       return;
     }
+    claimPlayback();
     stopPlayback();
     playOnNextResult.current = animationOn && traceLength <= 2000;
     void run({
@@ -113,9 +139,10 @@ function App() {
       policy: "all",
       includeEvents: true,
     });
-  }, [workload, capacity, traceLength, parsedSeed, animationOn, stopPlayback, run]);
+  }, [workload, capacity, traceLength, parsedSeed, animationOn, claimPlayback, stopPlayback, run]);
 
   const handleReset = useCallback(() => {
+    claimPlayback();
     stopPlayback();
     setWorkload(DEFAULTS.workload);
     setCapacity(DEFAULTS.capacity);
@@ -132,7 +159,7 @@ function App() {
       policy: "all",
       includeEvents: true,
     });
-  }, [stopPlayback, run]);
+  }, [claimPlayback, stopPlayback, run]);
 
   const traceLengthNow = simResult?.trace.length ?? 0;
 
@@ -145,15 +172,18 @@ function App() {
   }, [playbackIndex, simResult, startPlayback]);
 
   const handlePause = useCallback(() => {
+    claimPlayback();
     stopPlayback();
-  }, [stopPlayback]);
+  }, [claimPlayback, stopPlayback]);
 
   const handleSkipToEnd = useCallback(() => {
+    claimPlayback();
     stopPlayback();
     setPlaybackIndex(Math.max(traceLengthNow - 1, 0));
-  }, [stopPlayback, traceLengthNow]);
+  }, [claimPlayback, stopPlayback, traceLengthNow]);
 
   const handleStep = useCallback((delta: number) => {
+    claimPlayback();
     stopPlayback();
     setPlaybackIndex((prev) => {
       if (traceLengthNow <= 0) {
@@ -162,7 +192,7 @@ function App() {
       const current = prev < 0 ? 0 : prev;
       return Math.max(0, Math.min(traceLengthNow - 1, current + delta));
     });
-  }, [stopPlayback, traceLengthNow]);
+  }, [claimPlayback, stopPlayback, traceLengthNow]);
 
   const handleRestartPlayback = useCallback(() => {
     if (!simResult || simResult.trace.length === 0) {
@@ -172,9 +202,10 @@ function App() {
   }, [simResult, startPlayback]);
 
   const handleScrub = useCallback((index: number) => {
+    claimPlayback();
     stopPlayback();
     setPlaybackIndex(Math.max(0, Math.min(index, Math.max(traceLengthNow - 1, 0))));
-  }, [stopPlayback, traceLengthNow]);
+  }, [claimPlayback, stopPlayback, traceLengthNow]);
 
   const handleFocusPolicy = useCallback((p: PolicyName | null) => {
     setFocusedPolicy(p);

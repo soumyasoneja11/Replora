@@ -19,7 +19,9 @@ Defaults are workload `looping`, capacity 4, length 100, and seed 42. Workloads 
 
 ## Build and run
 
-Native engine, from the repository root. Needs CMake 3.20 or newer and a C++17 compiler. The first configure fetches GoogleTest v1.15.2.
+Native engine, from the repository root. Needs CMake 3.20 or newer, Git, and a C++17 compiler on PATH. The first configure clones GoogleTest v1.15.2.
+
+macOS, Linux, and a Windows machine with Visual Studio use CMake's default generator:
 
 ```text
 cmake -S cpp -B build/native
@@ -27,7 +29,15 @@ cmake --build build/native
 ctest --test-dir build/native --output-on-failure
 ```
 
-The CLI is `build/native/replora_cli` (`replora_cli.exe` on Windows). Exit 0 is success. Exit 2 is invalid usage.
+Windows without Visual Studio selects NMake Makefiles and stops when `nmake` is missing. Pass Ninja instead. Ninja and the compiler (MinGW `g++` is enough) both have to be on PATH. Ninja is single-config, so the build type is set at configure time:
+
+```text
+cmake -S cpp -B build/native -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build/native
+ctest --test-dir build/native --output-on-failure
+```
+
+The CLI for Ninja and Makefiles is `build/native/replora_cli` (`replora_cli.exe` on Windows). A Visual Studio build writes `build/native/Release/replora_cli.exe` or `build/native/Debug/replora_cli.exe`. `npm run test:parity` reads `build/native/replora_cli.exe`. Exit 0 is success. Exit 2 is invalid usage.
 
 ```text
 replora_cli --capacity 4 --workload looping --requests 100
@@ -45,7 +55,7 @@ Benchmarks call that CSV mode. Git Bash or another Bash runs the script:
 bash scripts/run_benchmarks.sh
 ```
 
-It configures a Release build in `build/release`, then writes `results/benchmark_results.csv`: capacities 4, 16, and 64, workloads `looping` and `frequency-skewed`, 10000 requests, seed 42, all four policies. The script adds `experimentId` and places it first. Re-running replaces the timing column and keeps the other columns on the same platform and ABI. `results/README.md` records the machine, the date, and what that file shows. The viewer form accepts capacity 1 through 64 and trace length 0 through 10000. Length 0 is an empty trace. The engine still accepts a capacity above 64; 64 is the form ceiling because that is the largest benchmark size.
+On Windows the script passes `-G "MinGW Makefiles"` when `g++` is on PATH, because a plain configure would select NMake. It configures a Release build in `build/release`, then writes `results/benchmark_results.csv`: capacities 4, 16, and 64, workloads `looping` and `frequency-skewed`, 10000 requests, seed 42, all four policies. The script adds `experimentId` and places it first. Re-running replaces the timing column and keeps the other columns on the same platform and ABI. `results/README.md` records the machine, the date, and what that file shows. The viewer form accepts capacity 1 through 64 and trace length 0 through 10000. Length 0 is an empty trace. The engine still accepts a capacity above 64; 64 is the form ceiling because that is the largest benchmark size.
 
 WebAssembly uses the same `cpp/src`. Install Emscripten, then activate it in the shell (`emsdk_env.bat` on Windows, `source ./emsdk_env.sh` on macOS or Linux). If `emcc` is missing, `npm run build:wasm` prints the install steps and exits 1.
 

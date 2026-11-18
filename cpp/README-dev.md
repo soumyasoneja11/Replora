@@ -1,15 +1,20 @@
-Configure, build, and test the C++17 engine from the repository root.
+Configure, build, and test the C++17 engine from the repository root. Needs CMake 3.20 or newer, Git, and a C++17 compiler on PATH. The first configure clones GoogleTest at tag v1.15.2. Warnings are -Wall -Wextra, or /W4 on MSVC.
+
+macOS, Linux, and Windows with Visual Studio use the default generator:
 
     cmake -S cpp -B build/native
     cmake --build build/native
     ctest --test-dir build/native --output-on-failure
 
-Needs CMake 3.20 or newer, a C++17 compiler, and network on first configure.
-GoogleTest is fetched at tag v1.15.2. Warnings are -Wall -Wextra, or /W4 on MSVC.
+Windows without Visual Studio selects NMake Makefiles and stops when nmake is missing. Pass Ninja, with Ninja and the compiler (MinGW g++ is enough) on PATH:
+
+    cmake -S cpp -B build/native -G Ninja -DCMAKE_BUILD_TYPE=Release
+    cmake --build build/native
+    ctest --test-dir build/native --output-on-failure
 replora_core is the static library built from cpp/src. replora_cli and the Emscripten target both link that library. Neither one implements a second cache policy.
 Key is std::int32_t, the integer form of the TypeScript number keys in src/simulation/types.ts.
 
-The CLI binary is build/native/replora_cli (replora_cli.exe on Windows). Exit 0 is success. Exit 2 is invalid usage.
+The CLI binary for Ninja and Makefiles is build/native/replora_cli (replora_cli.exe on Windows). A Visual Studio build writes build/native/Release/replora_cli.exe or build/native/Debug/replora_cli.exe. Exit 0 is success. Exit 2 is invalid usage.
 
 ```text
 replora_cli --capacity 4 --workload looping --requests 100
