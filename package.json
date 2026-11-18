@@ -9,7 +9,9 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:wasm": "node scripts/buildWasm.mjs",
+    "test:parity": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/wasmParity.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

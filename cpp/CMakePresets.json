@@ -1,0 +1,23 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "wasm",
+      "displayName": "Emscripten wasm",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/../build/wasm",
+      "toolchainFile": "$penv{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "REPLORA_WASM": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "wasm",
+      "configurePreset": "wasm",
+      "targets": ["replora_wasm"]
+    }
+  ]
+}
