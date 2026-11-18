@@ -6,19 +6,17 @@
 set -euo pipefail
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-build_dir="${REPLORA_BUILD_DIR:-$root/build/native}"
+build_dir="${REPLORA_BUILD_DIR:-$root/build/release}"
+cmake_args=(-S "$root/cpp" -B "$build_dir" -DCMAKE_BUILD_TYPE=Release)
+# Windows CMake otherwise picks NMake. This repo's native compiler is g++.
+if [[ "${OS:-}" == "Windows_NT" ]] && command -v g++ >/dev/null 2>&1; then
+  cmake_args+=(-G "MinGW Makefiles")
+fi
+cmake "${cmake_args[@]}"
+cmake --build "$build_dir" --target replora_cli
 cli="$build_dir/replora_cli"
 if [[ -f "${cli}.exe" ]]; then
   cli="${cli}.exe"
-fi
-
-if [[ ! -f "$cli" ]]; then
-  cmake -S "$root/cpp" -B "$build_dir"
-  cmake --build "$build_dir" --target replora_cli
-  cli="$build_dir/replora_cli"
-  if [[ -f "${cli}.exe" ]]; then
-    cli="${cli}.exe"
-  fi
 fi
 
 out_dir="$root/results"

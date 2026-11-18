@@ -6,7 +6,7 @@ import { expect, it } from "vitest";
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const forbiddenImport =
-  /from\s+["'][^"']*(?:\/algorithms\/|algorithms["']|simulation\/simulator|simulation\/workloads|simulation\/metrics)/;
+  /from\s+["'][^"']*(?:\/algorithms\/|algorithms["']|simulation\/simulator|simulation\/workloads|simulation\/metrics|simulation\/mlGuided|simulation\/explanations)/;
 const policyClass = /class\s+\w*Policy\b|implements\s+CachePolicy/;
 
 function sourceFiles(directory: string): string[] {

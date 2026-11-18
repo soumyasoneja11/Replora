@@ -45,7 +45,7 @@ Benchmarks call that CSV mode. Git Bash or another Bash runs the script:
 bash scripts/run_benchmarks.sh
 ```
 
-It writes `results/benchmark_results.csv`: capacities 4, 16, and 64, workloads `looping` and `frequency-skewed`, 10000 requests, seed 42, all four policies. The script adds `experimentId` and places it first. Re-running replaces the timing column and keeps the other columns on the same platform and ABI. `results/README.md` records the machine, the date, and what that file shows.
+It configures a Release build in `build/release`, then writes `results/benchmark_results.csv`: capacities 4, 16, and 64, workloads `looping` and `frequency-skewed`, 10000 requests, seed 42, all four policies. The script adds `experimentId` and places it first. Re-running replaces the timing column and keeps the other columns on the same platform and ABI. `results/README.md` records the machine, the date, and what that file shows. The viewer form accepts capacity 1 through 64 and trace length 0 through 10000. Length 0 is an empty trace. The engine still accepts a capacity above 64; 64 is the form ceiling because that is the largest benchmark size.
 
 WebAssembly uses the same `cpp/src`. Install Emscripten, then activate it in the shell (`emsdk_env.bat` on Windows, `source ./emsdk_env.sh` on macOS or Linux). If `emcc` is missing, `npm run build:wasm` prints the install steps and exits 1.
 
@@ -106,7 +106,7 @@ Counts come from the events the engine records.
 
 ## Limitations
 
-The traces are generated. This is not a CPU cache and it does not replay a hardware counter. The engine runs one policy after another on one thread. Memory figures are the estimates above. LFU's victim scan is O(C) on purpose; it is not a heap. Random swap-and-pop does not match the old TypeScript policy, which overwrote the chosen slot, so Random rows in `tests/golden/` are reference-only. The ML panel still in the viewer is a deterministic heuristic in `src/simulation/mlGuided.ts`. It does not run in the C++ engine and it is not part of the measured comparison.
+The traces are generated. This is not a CPU cache and it does not replay a hardware counter. The engine runs one policy after another on one thread. Memory figures are the estimates above. LFU's victim scan is O(C) on purpose; it is not a heap. Random swap-and-pop does not match the old TypeScript policy, which overwrote the chosen slot, so Random rows in `tests/golden/` are reference-only. The viewer does not choose a victim. The measured comparison is the four C++ policies.
 
 ## Migration
 

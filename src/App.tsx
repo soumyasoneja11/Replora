@@ -14,7 +14,6 @@ import { TraceViewer } from "./components/TraceViewer";
 import { CacheState } from "./components/CacheState";
 import { Explanation } from "./components/Explanation";
 import { ComplexityPanel } from "./components/ComplexityPanel";
-import { MLPanel } from "./components/MLPanel";
 
 const DEFAULTS = {
   workload: "looping" as WorkloadType,
@@ -313,6 +312,17 @@ function App() {
         />
       </div>
 
+      <div className="mobile-sticky-run">
+        <button
+          className={`btn-run ${isRunning ? "running" : ""}`}
+          onClick={handleRun}
+          disabled={isRunning || parsedSeed === null}
+          aria-label="Run simulation"
+        >
+          {isRunning ? "Running..." : "Run Simulation"}
+        </button>
+      </div>
+
       <div className="trace-cache-row">
         <TraceViewer
           trace={simResult.trace}
@@ -344,12 +354,6 @@ function App() {
         <ComplexityPanel />
       </div>
 
-      <MLPanel
-        currentEvent={currentEvent}
-        trace={simResult.trace}
-        playbackIndex={playbackIndex}
-      />
-
       <div className="keyboard-hints" aria-label="Keyboard shortcuts">
         <span><span className="kbd">Space</span> Play/Pause</span>
         <span><span className="kbd">&larr;</span><span className="kbd">&rarr;</span> Step</span>
@@ -365,17 +369,6 @@ function App() {
         <span className="footer-sep" aria-hidden="true">&middot;</span>
         <span>v0.1</span>
       </footer>
-
-      <div className="mobile-sticky-run">
-        <button
-          className={`btn-run ${isRunning ? "running" : ""}`}
-          onClick={handleRun}
-          disabled={isRunning || parsedSeed === null}
-          aria-label="Run simulation"
-        >
-          {isRunning ? "Running..." : "Run Simulation"}
-        </button>
-      </div>
     </div>
   );
 }

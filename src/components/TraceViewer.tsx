@@ -109,6 +109,9 @@ export function TraceViewer({
         role="list"
         aria-label="Access trace sequence"
       >
+        {trace.length === 0 && (
+          <p className="trace-empty">Empty trace. Length 0 returns zero hits, misses, and evictions.</p>
+        )}
         {trace.slice(visibleRange.start, visibleRange.end).map((item, offsetI) => {
           const i = visibleRange.start + offsetI;
           const distance = Math.abs(i - playbackIndex);
@@ -154,8 +157,8 @@ export function TraceViewer({
         }}
         role="slider"
         aria-label="Trace position"
-        aria-valuenow={playbackIndex + 1}
-        aria-valuemin={1}
+        aria-valuenow={trace.length === 0 ? 0 : playbackIndex + 1}
+        aria-valuemin={trace.length === 0 ? 0 : 1}
         aria-valuemax={trace.length}
         tabIndex={0}
       >
@@ -183,6 +186,7 @@ export function TraceViewer({
         <button
           className="btn-playback"
           onClick={isPlaying ? onPause : onPlay}
+          disabled={trace.length === 0}
           aria-label={isPlaying ? "Pause playback" : "Play trace"}
         >
           {isPlaying ? "Pause" : "Play"}
@@ -198,12 +202,13 @@ export function TraceViewer({
         <button
           className="btn-playback"
           onClick={onSkipToEnd}
+          disabled={trace.length === 0}
           aria-label="Skip to end of trace"
         >
           End
         </button>
         <span className="trace-counter">
-          {playbackIndex >= 0 ? playbackIndex + 1 : 0}/{trace.length}
+          {trace.length === 0 ? "0/0" : `${playbackIndex >= 0 ? playbackIndex + 1 : 0}/${trace.length}`}
         </span>
       </div>
 

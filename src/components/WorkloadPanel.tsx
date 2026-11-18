@@ -91,11 +91,11 @@ export function WorkloadPanel({
             className="control-input"
             type="number"
             min={1}
-            max={20}
+            max={64}
             value={capacity}
             onChange={(e) => {
               const v = parseInt(e.target.value, 10);
-              if (v >= 1 && v <= 20) onCapacityChange(v);
+              if (v >= 1 && v <= 64) onCapacityChange(v);
             }}
           />
         </div>
@@ -105,12 +105,12 @@ export function WorkloadPanel({
             id="trace-input"
             className="control-input"
             type="number"
-            min={1}
+            min={0}
             max={10000}
             value={traceLength}
             onChange={(e) => {
               const v = parseInt(e.target.value, 10);
-              if (v >= 1 && v <= 10000) onTraceLengthChange(v);
+              if (v >= 0 && v <= 10000) onTraceLengthChange(v);
             }}
           />
         </div>
@@ -130,6 +130,7 @@ export function WorkloadPanel({
           )}
         </div>
       </div>
+      <p className="panel-note">Capacity is 1 through 64. Length 0 is an empty trace. The longest trace is 10000.</p>
 
       <div className="control-actions">
         <button
