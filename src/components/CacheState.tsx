@@ -29,8 +29,6 @@ export function CacheState({
     slots.push(i < cacheState.length ? cacheState[i] : null);
   }
 
-  const isEviction = result === "miss" && victim !== null;
-
   const policyDiffs = currentEvent && result === "miss"
     ? allResults
         .filter((r) => r.policy !== selectedPolicy)
@@ -102,23 +100,22 @@ export function CacheState({
         </span>
       </div>
 
-      {isEviction && (
-        <div className="decision-reveal" aria-label="Eviction decision sequence">
+      {currentEvent && (
+        <div className="decision-reveal" aria-label="Decision sequence">
           <span className="decision-step">
             Request <span className="decision-value incoming">{requestedItem}</span>
           </span>
           <span className="decision-arrow" aria-hidden="true">&rarr;</span>
           <span className="decision-step">
-            Miss
+            {result === "hit" ? "Hit" : "Miss"}
           </span>
           <span className="decision-arrow" aria-hidden="true">&rarr;</span>
           <span className="decision-step">
-            Evict <span className="decision-value victim">{victim}</span>
+            Victim <span className="decision-value victim">{victim !== null ? victim : "none"}</span>
           </span>
           <span className="decision-arrow" aria-hidden="true">&rarr;</span>
-          <span className="decision-step">
-            Insert <span className="decision-value incoming">{requestedItem}</span>
-          </span>
+          <span className="decision-step">Structure update</span>
+          <span className="decision-explanation">{currentEvent.explanation}</span>
         </div>
       )}
 

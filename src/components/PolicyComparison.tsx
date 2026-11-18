@@ -81,6 +81,11 @@ export function PolicyComparison({
             <th scope="col">Miss</th>
             <th scope="col">Evict</th>
             <th scope="col">Time</th>
+            <th scope="col">
+              <Tooltip text="Estimate from container sizes and sizeof, not process RSS.">
+                <span>Memory</span>
+              </Tooltip>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -91,10 +96,12 @@ export function PolicyComparison({
               <td>{r.metrics.missRate.toFixed(1)}%</td>
               <td>{r.metrics.evictions}</td>
               <td>{r.metrics.executionTimeMs.toFixed(2)}ms</td>
+              <td>{r.metrics.estimatedMemoryBytes}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <p className="panel-note">Memory is a container-size estimate, not process RSS.</p>
     </div>
   );
 }

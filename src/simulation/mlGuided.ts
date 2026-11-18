@@ -1,3 +1,4 @@
+// TODO: retire this file in the prompt that removes the ML-guided panel.
 /**
  * EXPERIMENTAL — ML-Guided replacement policy abstraction.
  *

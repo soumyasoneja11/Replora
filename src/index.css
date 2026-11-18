@@ -106,6 +106,17 @@ body {
   letter-spacing: 0.5px;
 }
 
+.header-explainer {
+  margin: 8px 0 0;
+  max-width: 46rem;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-secondary);
+}
+
 .header-right {
   display: flex;
   align-items: center;
@@ -228,7 +239,7 @@ body {
 
 .metric-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: var(--gap);
   margin-bottom: clamp(12px, 1.5vw, 16px);
   animation: fadeInUp 400ms 80ms var(--ease-out) both;
@@ -595,8 +606,15 @@ body {
 
 .control-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
+}
+
+.control-error {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--miss);
 }
 
 .control-actions {
@@ -986,6 +1004,7 @@ body {
 .decision-reveal {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
   padding: 8px 12px;
@@ -1015,6 +1034,12 @@ body {
 
 .decision-value.victim {
   color: var(--miss);
+}
+
+.decision-explanation {
+  flex-basis: 100%;
+  color: var(--text);
+  line-height: 1.45;
 }
 
 .decision-value.incoming {
@@ -1088,6 +1113,12 @@ body {
 }
 
 .explanation-body {
+  color: var(--text-secondary);
+}
+
+.explanation-note {
+  display: block;
+  margin-top: 8px;
   color: var(--text-secondary);
 }
 

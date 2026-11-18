@@ -20,6 +20,7 @@ export interface AccessEvent {
   result: "hit" | "miss";
   victim: number | null;
   cacheState: number[];
+  explanation: string;
 }
 
 export interface SimulationMetrics {
@@ -31,6 +32,7 @@ export interface SimulationMetrics {
   executionTimeMs: number;
   totalAccesses: number;
   cacheCapacity: number;
+  estimatedMemoryBytes: number;
 }
 
 export interface PolicyResult {
@@ -43,12 +45,4 @@ export interface SimulationResult {
   config: SimulationConfig;
   trace: number[];
   results: PolicyResult[];
-}
-
-export interface CachePolicy {
-  readonly name: PolicyName;
-  readonly capacity: number;
-  access(item: number): AccessEvent;
-  getState(): number[];
-  reset(): void;
 }

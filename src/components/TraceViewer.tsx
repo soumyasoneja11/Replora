@@ -8,6 +8,8 @@ interface TraceViewerProps {
   isPlaying: boolean;
   onPlay: () => void;
   onPause: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
   onSkipToEnd: () => void;
   onScrub: (index: number) => void;
 }
@@ -21,6 +23,8 @@ export function TraceViewer({
   isPlaying,
   onPlay,
   onPause,
+  onPrevious,
+  onNext,
   onSkipToEnd,
   onScrub,
 }: TraceViewerProps) {
@@ -170,10 +174,26 @@ export function TraceViewer({
       <div className="trace-playback">
         <button
           className="btn-playback"
+          onClick={onPrevious}
+          disabled={trace.length === 0 || playbackIndex <= 0}
+          aria-label="Previous access"
+        >
+          Previous
+        </button>
+        <button
+          className="btn-playback"
           onClick={isPlaying ? onPause : onPlay}
           aria-label={isPlaying ? "Pause playback" : "Play trace"}
         >
           {isPlaying ? "Pause" : "Play"}
+        </button>
+        <button
+          className="btn-playback"
+          onClick={onNext}
+          disabled={trace.length === 0 || playbackIndex >= trace.length - 1}
+          aria-label="Next access"
+        >
+          Next
         </button>
         <button
           className="btn-playback"

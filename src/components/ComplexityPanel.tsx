@@ -2,31 +2,35 @@ export function ComplexityPanel() {
   const policies = [
     {
       name: "FIFO",
-      strategy: "Insertion order",
+      strategy: "queue + unordered_set",
       lookup: "O(1)",
       insert: "O(1)",
       evict: "O(1)",
+      space: "O(C)",
     },
     {
       name: "LRU",
-      strategy: "Recency (Map)",
+      strategy: "std::list + unordered_map",
       lookup: "O(1)",
       insert: "O(1)",
       evict: "O(1)",
+      space: "O(C)",
     },
     {
       name: "LFU",
-      strategy: "Frequency",
+      strategy: "unordered_map, O(C) min-frequency scan",
       lookup: "O(1)",
       insert: "O(1)",
-      evict: "O(n)",
+      evict: "O(C)",
+      space: "O(C)",
     },
     {
       name: "RANDOM",
-      strategy: "No history",
+      strategy: "vector + unordered_map, swap-and-pop",
       lookup: "O(1)",
       insert: "O(1)",
       evict: "O(1)",
+      space: "O(C)",
     },
   ];
 
@@ -41,7 +45,7 @@ export function ComplexityPanel() {
             <span className="complexity-name">{p.name}</span>
             <span className="complexity-strategy">{p.strategy}</span>
             <span className="complexity-ops">
-              Lookup {p.lookup} · Insert {p.insert} · Evict {p.evict}
+              Lookup {p.lookup} · Insert {p.insert} · Evict {p.evict} · Space {p.space}
             </span>
           </div>
         ))}

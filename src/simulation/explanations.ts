@@ -1,3 +1,4 @@
+// TODO: retire this file in the prompt that removes the workload explanation panel.
 import type { WorkloadType } from "./types";
 
 const explanations: Record<WorkloadType, string> = {

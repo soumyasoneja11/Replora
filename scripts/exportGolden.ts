@@ -2,7 +2,6 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { runSimulation } from "../src/simulation/simulator";
 import type { PolicyName, PolicyResult, WorkloadType } from "../src/simulation/types";
 
 export const WORKLOADS: readonly WorkloadType[] = [
@@ -77,27 +76,14 @@ function toPolicy(result: PolicyResult): GoldenPolicy {
 }
 
 export function buildFixture(
-  workload: WorkloadType,
-  capacity: number,
-  traceLength: number,
-  seed: number,
+  _workload: WorkloadType,
+  _capacity: number,
+  _traceLength: number,
+  _seed: number,
 ): GoldenFixture {
-  const result = runSimulation({ workload, capacity, traceLength, seed });
-  const policies = {} as Record<PolicyName, GoldenPolicy>;
-
-  for (const name of POLICY_ORDER) {
-    const policy = result.results.find((entry) => entry.policy === name);
-    if (!policy) {
-      throw new Error(`simulation did not return ${name}`);
-    }
-    policies[name] = toPolicy(policy);
-  }
-
-  return {
-    config: { workload, capacity, traceLength, seed },
-    trace: result.trace,
-    policies,
-  };
+  throw new Error(
+    "The TypeScript simulator was removed. tests/golden/ remains the recorded fixture set.",
+  );
 }
 
 export function serializeFixture(fixture: GoldenFixture): string {

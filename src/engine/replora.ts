@@ -36,15 +36,19 @@ interface ReploraFactoryModule {
 
 let modulePromise: Promise<ReploraModule> | undefined;
 
-function wasmModuleSpecifier(): string {
-  if (typeof window !== "undefined") {
-    return "/wasm/replora.js";
-  }
-  return new URL("../../public/wasm/replora.js", import.meta.url).href;
-}
-
 async function instantiate(): Promise<ReploraModule> {
-  const specifier = wasmModuleSpecifier();
+  if (typeof window !== "undefined") {
+    // A direct import() is rewritten by Vite and the emscripten file is not a
+    // Vite module. Load the static file from public/wasm as the browser would.
+    const load = new Function(
+      "return import('/wasm/replora.js')",
+    ) as () => Promise<ReploraFactoryModule>;
+    const factoryModule = await load();
+    return factoryModule.default({
+      locateFile: (file: string) => `/wasm/${file}`,
+    });
+  }
+  const specifier = new URL("../../public/wasm/replora.js", import.meta.url).href;
   const factoryModule = (await import(/* @vite-ignore */ specifier)) as ReploraFactoryModule;
   return factoryModule.default();
 }

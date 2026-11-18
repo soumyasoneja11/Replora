@@ -28,10 +28,13 @@ interface WorkloadPanelProps {
   workload: WorkloadType;
   capacity: number;
   traceLength: number;
+  seed: string;
+  seedValid: boolean;
   animationOn: boolean;
   onWorkloadChange: (w: WorkloadType) => void;
   onCapacityChange: (c: number) => void;
   onTraceLengthChange: (l: number) => void;
+  onSeedChange: (seed: string) => void;
   onAnimationToggle: () => void;
   onReset: () => void;
   onRun: () => void;
@@ -42,10 +45,13 @@ export function WorkloadPanel({
   workload,
   capacity,
   traceLength,
+  seed,
+  seedValid,
   animationOn,
   onWorkloadChange,
   onCapacityChange,
   onTraceLengthChange,
+  onSeedChange,
   onAnimationToggle,
   onReset,
   onRun,
@@ -100,13 +106,28 @@ export function WorkloadPanel({
             className="control-input"
             type="number"
             min={1}
-            max={5000}
+            max={10000}
             value={traceLength}
             onChange={(e) => {
               const v = parseInt(e.target.value, 10);
-              if (v >= 1 && v <= 5000) onTraceLengthChange(v);
+              if (v >= 1 && v <= 10000) onTraceLengthChange(v);
             }}
           />
+        </div>
+        <div className="control-group">
+          <label className="control-label" htmlFor="seed-input">Seed</label>
+          <input
+            id="seed-input"
+            className="control-input"
+            type="text"
+            inputMode="numeric"
+            value={seed}
+            aria-invalid={!seedValid}
+            onChange={(e) => onSeedChange(e.target.value)}
+          />
+          {!seedValid && (
+            <span className="control-error">Enter an integer from 0 through 4294967295.</span>
+          )}
         </div>
       </div>
 
@@ -114,7 +135,7 @@ export function WorkloadPanel({
         <button
           className={`btn-run ${isRunning ? "running" : ""}`}
           onClick={onRun}
-          disabled={isRunning}
+          disabled={isRunning || !seedValid}
           style={{ flex: 1 }}
         >
           {isRunning ? "Running..." : "Run Simulation"}

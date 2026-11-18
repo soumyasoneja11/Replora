@@ -1,0 +1,1114 @@
+{
+  "config": {
+    "workload": "random",
+    "capacity": 4,
+    "traceLength": 20,
+    "seed": 42,
+    "policySelection": "all",
+    "policyName": "",
+    "workloadName": ""
+  },
+  "trace": [6, 2, 12, 5, 8, 1, 9, 3, 18, 20, 18, 10, 13, 18, 12, 2, 3, 20, 19, 18],
+  "results": [{
+    "policyName": "FIFO",
+    "metrics": {
+      "hits": 2,
+      "misses": 18,
+      "evictions": 14,
+      "hitRate": 10,
+      "missRate": 90,
+      "executionTimeMs": 1.0900000000000001,
+      "executionTimeMicros": 1090,
+      "totalAccesses": 20,
+      "cacheCapacity": 4,
+      "estimatedMemoryBytes": 320
+    },
+    "events": [{
+      "index": 0,
+      "key": 6,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 6. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 1,
+      "key": 2,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 2. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 2,
+      "key": 12,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2, 12],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 12. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 3,
+      "key": 5,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2, 12, 5],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 5. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 4,
+      "key": 8,
+      "hit": false,
+      "evicted": true,
+      "victim": 6,
+      "stateAfter": {
+        "keys": [2, 12, 5, 8],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 8. The key was absent and the queue was full, so the front key 6 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 5,
+      "key": 1,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [12, 5, 8, 1],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 1. The key was absent and the queue was full, so the front key 2 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 6,
+      "key": 9,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [5, 8, 1, 9],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 9. The key was absent and the queue was full, so the front key 12 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 7,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 5,
+      "stateAfter": {
+        "keys": [8, 1, 9, 3],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 3. The key was absent and the queue was full, so the front key 5 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 8,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 8,
+      "stateAfter": {
+        "keys": [1, 9, 3, 18],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 18. The key was absent and the queue was full, so the front key 8 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 9,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 1,
+      "stateAfter": {
+        "keys": [9, 3, 18, 20],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 20. The key was absent and the queue was full, so the front key 1 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 10,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [9, 3, 18, 20],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. A FIFO hit does not reorder the queue. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 11,
+      "key": 10,
+      "hit": false,
+      "evicted": true,
+      "victim": 9,
+      "stateAfter": {
+        "keys": [3, 18, 20, 10],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 10. The key was absent and the queue was full, so the front key 9 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 12,
+      "key": 13,
+      "hit": false,
+      "evicted": true,
+      "victim": 3,
+      "stateAfter": {
+        "keys": [18, 20, 10, 13],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 13. The key was absent and the queue was full, so the front key 3 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 13,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [18, 20, 10, 13],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. A FIFO hit does not reorder the queue. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 14,
+      "key": 12,
+      "hit": false,
+      "evicted": true,
+      "victim": 18,
+      "stateAfter": {
+        "keys": [20, 10, 13, 12],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 12. The key was absent and the queue was full, so the front key 18 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 15,
+      "key": 2,
+      "hit": false,
+      "evicted": true,
+      "victim": 20,
+      "stateAfter": {
+        "keys": [10, 13, 12, 2],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 2. The key was absent and the queue was full, so the front key 20 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 16,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 10,
+      "stateAfter": {
+        "keys": [13, 12, 2, 3],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 3. The key was absent and the queue was full, so the front key 10 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 17,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 13,
+      "stateAfter": {
+        "keys": [12, 2, 3, 20],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 20. The key was absent and the queue was full, so the front key 13 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 18,
+      "key": 19,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [2, 3, 20, 19],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 19. The key was absent and the queue was full, so the front key 12 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }, {
+      "index": 19,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [3, 20, 19, 18],
+        "frequencies": [],
+        "ordering": "front=oldest"
+      },
+      "policyName": "FIFO",
+      "explanation": "FIFO miss: key 18. The key was absent and the queue was full, so the front key 2 was evicted because it is the oldest insertion. The \"queue\" keeps oldest at the front. Membership is an \"unordered_set\". Order label: front=oldest."
+    }]
+  }, {
+    "policyName": "LRU",
+    "metrics": {
+      "hits": 2,
+      "misses": 18,
+      "evictions": 14,
+      "hitRate": 10,
+      "missRate": 90,
+      "executionTimeMs": 0.057000000000000002,
+      "executionTimeMicros": 57,
+      "totalAccesses": 20,
+      "cacheCapacity": 4,
+      "estimatedMemoryBytes": 360
+    },
+    "events": [{
+      "index": 0,
+      "key": 6,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 6. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 1,
+      "key": 2,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [2, 6],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 2. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 2,
+      "key": 12,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [12, 2, 6],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 12. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 3,
+      "key": 5,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [5, 12, 2, 6],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 5. The key was absent and the cache still had space, so it was inserted and no victim was chosen. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 4,
+      "key": 8,
+      "hit": false,
+      "evicted": true,
+      "victim": 6,
+      "stateAfter": {
+        "keys": [8, 5, 12, 2],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 8. The key was absent and the list was full, so the tail key 6 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 5,
+      "key": 1,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [1, 8, 5, 12],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 1. The key was absent and the list was full, so the tail key 2 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 6,
+      "key": 9,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [9, 1, 8, 5],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 9. The key was absent and the list was full, so the tail key 12 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 7,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 5,
+      "stateAfter": {
+        "keys": [3, 9, 1, 8],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 3. The key was absent and the list was full, so the tail key 5 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 8,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 8,
+      "stateAfter": {
+        "keys": [18, 3, 9, 1],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 18. The key was absent and the list was full, so the tail key 8 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 9,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 1,
+      "stateAfter": {
+        "keys": [20, 18, 3, 9],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 20. The key was absent and the list was full, so the tail key 1 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 10,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [18, 20, 3, 9],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. The node was moved to the front, which is most recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 11,
+      "key": 10,
+      "hit": false,
+      "evicted": true,
+      "victim": 9,
+      "stateAfter": {
+        "keys": [10, 18, 20, 3],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 10. The key was absent and the list was full, so the tail key 9 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 12,
+      "key": 13,
+      "hit": false,
+      "evicted": true,
+      "victim": 3,
+      "stateAfter": {
+        "keys": [13, 10, 18, 20],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 13. The key was absent and the list was full, so the tail key 3 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 13,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [18, 13, 10, 20],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. The node was moved to the front, which is most recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 14,
+      "key": 12,
+      "hit": false,
+      "evicted": true,
+      "victim": 20,
+      "stateAfter": {
+        "keys": [12, 18, 13, 10],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 12. The key was absent and the list was full, so the tail key 20 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 15,
+      "key": 2,
+      "hit": false,
+      "evicted": true,
+      "victim": 10,
+      "stateAfter": {
+        "keys": [2, 12, 18, 13],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 2. The key was absent and the list was full, so the tail key 10 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 16,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 13,
+      "stateAfter": {
+        "keys": [3, 2, 12, 18],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 3. The key was absent and the list was full, so the tail key 13 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 17,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 18,
+      "stateAfter": {
+        "keys": [20, 3, 2, 12],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 20. The key was absent and the list was full, so the tail key 18 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 18,
+      "key": 19,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [19, 20, 3, 2],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 19. The key was absent and the list was full, so the tail key 12 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }, {
+      "index": 19,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [18, 19, 20, 3],
+        "frequencies": [],
+        "ordering": "front=MRU, back=LRU"
+      },
+      "policyName": "LRU",
+      "explanation": "LRU miss: key 18. The key was absent and the list was full, so the tail key 2 was evicted because it is the least recently used. The \"std::list\" tail is the least recently used. The \"unordered_map\" stores an iterator for O(1) promotion. Order label: front=MRU, back=LRU."
+    }]
+  }, {
+    "policyName": "LFU",
+    "metrics": {
+      "hits": 3,
+      "misses": 17,
+      "evictions": 13,
+      "hitRate": 15,
+      "missRate": 85,
+      "executionTimeMs": 0.255,
+      "executionTimeMicros": 255,
+      "totalAccesses": 20,
+      "cacheCapacity": 4,
+      "estimatedMemoryBytes": 296
+    },
+    "events": [{
+      "index": 0,
+      "key": 6,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6],
+        "frequencies": [1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 6. The key was absent and the cache still had space, so it was inserted and no victim was chosen. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 1,
+      "key": 2,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2],
+        "frequencies": [1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 2. The key was absent and the cache still had space, so it was inserted and no victim was chosen. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 2,
+      "key": 12,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2, 12],
+        "frequencies": [1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 12. The key was absent and the cache still had space, so it was inserted and no victim was chosen. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 3,
+      "key": 5,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2, 12, 5],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 5. The key was absent and the cache still had space, so it was inserted and no victim was chosen. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 4,
+      "key": 8,
+      "hit": false,
+      "evicted": true,
+      "victim": 6,
+      "stateAfter": {
+        "keys": [2, 12, 5, 8],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 8. The key was absent and the cache was full. A full scan chose 6 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 5,
+      "key": 1,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [12, 5, 8, 1],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 1. The key was absent and the cache was full. A full scan chose 2 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 6,
+      "key": 9,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [5, 8, 1, 9],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 9. The key was absent and the cache was full. A full scan chose 12 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 7,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 5,
+      "stateAfter": {
+        "keys": [8, 1, 9, 3],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 3. The key was absent and the cache was full. A full scan chose 5 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 8,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 8,
+      "stateAfter": {
+        "keys": [1, 9, 3, 18],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 18. The key was absent and the cache was full. A full scan chose 8 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 9,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 1,
+      "stateAfter": {
+        "keys": [9, 3, 18, 20],
+        "frequencies": [1, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 20. The key was absent and the cache was full. A full scan chose 1 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 10,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [9, 3, 18, 20],
+        "frequencies": [1, 1, 2, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. Its frequency increased by one. Insertion order did not change. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 11,
+      "key": 10,
+      "hit": false,
+      "evicted": true,
+      "victim": 9,
+      "stateAfter": {
+        "keys": [3, 18, 20, 10],
+        "frequencies": [1, 2, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 10. The key was absent and the cache was full. A full scan chose 9 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 12,
+      "key": 13,
+      "hit": false,
+      "evicted": true,
+      "victim": 3,
+      "stateAfter": {
+        "keys": [18, 20, 10, 13],
+        "frequencies": [2, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 13. The key was absent and the cache was full. A full scan chose 3 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 13,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [18, 20, 10, 13],
+        "frequencies": [3, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. Its frequency increased by one. Insertion order did not change. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 14,
+      "key": 12,
+      "hit": false,
+      "evicted": true,
+      "victim": 20,
+      "stateAfter": {
+        "keys": [18, 10, 13, 12],
+        "frequencies": [3, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 12. The key was absent and the cache was full. A full scan chose 20 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 15,
+      "key": 2,
+      "hit": false,
+      "evicted": true,
+      "victim": 10,
+      "stateAfter": {
+        "keys": [18, 13, 12, 2],
+        "frequencies": [3, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 2. The key was absent and the cache was full. A full scan chose 10 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 16,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 13,
+      "stateAfter": {
+        "keys": [18, 12, 2, 3],
+        "frequencies": [3, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 3. The key was absent and the cache was full. A full scan chose 13 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 17,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [18, 2, 3, 20],
+        "frequencies": [3, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 20. The key was absent and the cache was full. A full scan chose 12 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 18,
+      "key": 19,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [18, 3, 20, 19],
+        "frequencies": [3, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU miss: key 19. The key was absent and the cache was full. A full scan chose 2 for the lowest frequency, breaking a tie toward the earliest insertion. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }, {
+      "index": 19,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [18, 3, 20, 19],
+        "frequencies": [4, 1, 1, 1],
+        "ordering": "insertion order"
+      },
+      "policyName": "LFU",
+      "explanation": "LFU hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. Its frequency increased by one. Insertion order did not change. An \"unordered_map\" holds frequency and insertion order. Eviction scans every resident, which is O(C), with no heap. Order label: insertion order."
+    }]
+  }, {
+    "policyName": "RANDOM",
+    "metrics": {
+      "hits": 1,
+      "misses": 19,
+      "evictions": 15,
+      "hitRate": 5,
+      "missRate": 95,
+      "executionTimeMs": 0.053999999999999999,
+      "executionTimeMicros": 54,
+      "totalAccesses": 20,
+      "cacheCapacity": 4,
+      "estimatedMemoryBytes": 304
+    },
+    "events": [{
+      "index": 0,
+      "key": 6,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 6. The key was absent and the cache still had space, so it was inserted and no victim was chosen. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 1,
+      "key": 2,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 2. The key was absent and the cache still had space, so it was inserted and no victim was chosen. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 2,
+      "key": 12,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2, 12],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 12. The key was absent and the cache still had space, so it was inserted and no victim was chosen. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 3,
+      "key": 5,
+      "hit": false,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [6, 2, 12, 5],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 5. The key was absent and the cache still had space, so it was inserted and no victim was chosen. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 4,
+      "key": 8,
+      "hit": false,
+      "evicted": true,
+      "victim": 2,
+      "stateAfter": {
+        "keys": [6, 5, 12, 8],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 8. The key was absent and the vector was full. A seeded random index selected resident 2, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 5,
+      "key": 1,
+      "hit": false,
+      "evicted": true,
+      "victim": 6,
+      "stateAfter": {
+        "keys": [8, 5, 12, 1],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 1. The key was absent and the vector was full. A seeded random index selected resident 6, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 6,
+      "key": 9,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [8, 5, 1, 9],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 9. The key was absent and the vector was full. A seeded random index selected resident 12, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 7,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 8,
+      "stateAfter": {
+        "keys": [9, 5, 1, 3],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 3. The key was absent and the vector was full. A seeded random index selected resident 8, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 8,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 5,
+      "stateAfter": {
+        "keys": [9, 3, 1, 18],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 18. The key was absent and the vector was full. A seeded random index selected resident 5, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 9,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 9,
+      "stateAfter": {
+        "keys": [18, 3, 1, 20],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 20. The key was absent and the vector was full. A seeded random index selected resident 9, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 10,
+      "key": 18,
+      "hit": true,
+      "evicted": false,
+      "victim": null,
+      "stateAfter": {
+        "keys": [18, 3, 1, 20],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM hit: key 18. The key was already resident, so nothing was evicted and no victim was chosen. The vector was left unchanged and the RNG was not drawn. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 11,
+      "key": 10,
+      "hit": false,
+      "evicted": true,
+      "victim": 3,
+      "stateAfter": {
+        "keys": [18, 20, 1, 10],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 10. The key was absent and the vector was full. A seeded random index selected resident 3, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 12,
+      "key": 13,
+      "hit": false,
+      "evicted": true,
+      "victim": 18,
+      "stateAfter": {
+        "keys": [10, 20, 1, 13],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 13. The key was absent and the vector was full. A seeded random index selected resident 18, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 13,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 13,
+      "stateAfter": {
+        "keys": [10, 20, 1, 18],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 18. The key was absent and the vector was full. A seeded random index selected resident 13, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 14,
+      "key": 12,
+      "hit": false,
+      "evicted": true,
+      "victim": 18,
+      "stateAfter": {
+        "keys": [10, 20, 1, 12],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 12. The key was absent and the vector was full. A seeded random index selected resident 18, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 15,
+      "key": 2,
+      "hit": false,
+      "evicted": true,
+      "victim": 12,
+      "stateAfter": {
+        "keys": [10, 20, 1, 2],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 2. The key was absent and the vector was full. A seeded random index selected resident 12, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 16,
+      "key": 3,
+      "hit": false,
+      "evicted": true,
+      "victim": 20,
+      "stateAfter": {
+        "keys": [10, 2, 1, 3],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 3. The key was absent and the vector was full. A seeded random index selected resident 20, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 17,
+      "key": 20,
+      "hit": false,
+      "evicted": true,
+      "victim": 1,
+      "stateAfter": {
+        "keys": [10, 2, 3, 20],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 20. The key was absent and the vector was full. A seeded random index selected resident 1, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 18,
+      "key": 19,
+      "hit": false,
+      "evicted": true,
+      "victim": 20,
+      "stateAfter": {
+        "keys": [10, 2, 3, 19],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 19. The key was absent and the vector was full. A seeded random index selected resident 20, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }, {
+      "index": 19,
+      "key": 18,
+      "hit": false,
+      "evicted": true,
+      "victim": 3,
+      "stateAfter": {
+        "keys": [10, 2, 19, 18],
+        "frequencies": [],
+        "ordering": "arbitrary order (swap-and-pop)"
+      },
+      "policyName": "RANDOM",
+      "explanation": "RANDOM miss: key 18. The key was absent and the vector was full. A seeded random index selected resident 3, which was removed with swap-and-pop. Residents live in a \"vector\". An \"unordered_map\" stores each key's index for swap-and-pop. Order label: arbitrary order (swap-and-pop)."
+    }]
+  }],
+  "errors": []
+}
