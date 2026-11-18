@@ -215,6 +215,15 @@ body {
   user-select: none;
 }
 
+.snapshot-pending {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--evict);
+}
+
 /* ── Metric Strip ── */
 
 .metric-strip {

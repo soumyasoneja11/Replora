@@ -1,9 +1,12 @@
 import type { AccessEvent, CachePolicy } from "../simulation/types";
 
+/**
+ * LRU via an insertion-ordered Map: lookup, recency update, and eviction
+ * of the least-recent key are all O(1).
+ */
 export class LRUPolicy implements CachePolicy {
   readonly name = "LRU" as const;
-  private order: number[] = [];
-  private set = new Set<number>();
+  private order = new Map<number, true>();
   private accessIndex = 0;
   readonly capacity: number;
 
@@ -14,45 +17,42 @@ export class LRUPolicy implements CachePolicy {
   access(item: number): AccessEvent {
     const index = this.accessIndex++;
 
-    if (this.set.has(item)) {
-      const pos = this.order.indexOf(item);
-      this.order.splice(pos, 1);
-      this.order.push(item);
+    if (this.order.has(item)) {
+      this.order.delete(item);
+      this.order.set(item, true);
 
       return {
         index,
         requestedItem: item,
         result: "hit",
         victim: null,
-        cacheState: [...this.order],
+        cacheState: this.getState(),
       };
     }
 
     let victim: number | null = null;
-    if (this.order.length >= this.capacity) {
-      victim = this.order.shift()!;
-      this.set.delete(victim);
+    if (this.order.size >= this.capacity) {
+      victim = this.order.keys().next().value!;
+      this.order.delete(victim);
     }
 
-    this.order.push(item);
-    this.set.add(item);
+    this.order.set(item, true);
 
     return {
       index,
       requestedItem: item,
       result: "miss",
       victim,
-      cacheState: [...this.order],
+      cacheState: this.getState(),
     };
   }
 
   getState(): number[] {
-    return [...this.order];
+    return [...this.order.keys()];
   }
 
   reset(): void {
-    this.order = [];
-    this.set.clear();
+    this.order.clear();
     this.accessIndex = 0;
   }
 }

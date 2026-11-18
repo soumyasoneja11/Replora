@@ -184,16 +184,21 @@ function App() {
       : null;
 
   const selectedMetrics = policyResult?.metrics ?? null;
+  const configPending =
+    workload !== simResult.config.workload ||
+    capacity !== simResult.config.capacity ||
+    traceLength !== simResult.config.traceLength;
 
   return (
     <div className="dashboard">
       <Header onRun={handleRun} isRunning={isRunning} isPlaying={isPlaying} />
 
       <ExperimentSnapshot
-        workload={workload}
-        capacity={capacity}
-        traceLength={traceLength}
-        seed={DEFAULTS.seed}
+        workload={simResult.config.workload}
+        capacity={simResult.config.capacity}
+        traceLength={simResult.config.traceLength}
+        seed={simResult.config.seed ?? DEFAULTS.seed}
+        pending={configPending}
       />
 
       <MetricStrip metrics={selectedMetrics} />
@@ -231,7 +236,7 @@ function App() {
           onScrub={handleScrub}
         />
         <CacheState
-          capacity={capacity}
+          capacity={simResult.config.capacity}
           currentEvent={currentEvent}
           selectedPolicy={selectedPolicy}
           onPolicyChange={setSelectedPolicy}
@@ -241,7 +246,7 @@ function App() {
       </div>
 
       <div className="bottom-grid">
-        <Explanation workload={workload} />
+        <Explanation workload={simResult.config.workload} />
         <ComplexityPanel />
       </div>
 

@@ -43,12 +43,12 @@ It is designed as a focused DSA/systems experiment, not a generic dashboard.
 
 ## Supported Policies
 
-| Policy | Decision Rule | Evict Complexity | Key Idea |
-|--------|--------------|-----------------|----------|
-| FIFO | Evict the oldest inserted item | O(1) | Insertion order; no usage tracking |
-| LRU | Evict the least recently accessed item | O(1) | Recency as a proxy for future use |
-| LFU | Evict the least frequently accessed item | O(n) | Frequency history; tie-break by insertion order |
-| RANDOM | Evict a uniformly random item | O(1) | No history; baseline comparator |
+| Policy | Decision Rule | Lookup | Insert | Evict | Key Idea |
+|--------|--------------|--------|--------|-------|----------|
+| FIFO | Evict the oldest inserted item | O(1) | O(1) | O(1) | Insertion order; no usage tracking |
+| LRU | Evict the least recently accessed item | O(1) | O(1) | O(1) | Recency via insertion-ordered Map |
+| LFU | Evict the least frequently accessed item | O(1) | O(1) | O(n) | Frequency history; tie-break by insertion order |
+| RANDOM | Evict a uniformly random item | O(1) | O(1) | O(1) | No history; baseline comparator |
 
 All policies implement a common `CachePolicy` interface and are fully isolated from the UI layer.
 
@@ -195,12 +195,13 @@ The project builds to a static `dist/` directory and can be deployed to any stat
 
 **Vercel:**
 
-1. Import the repository in Vercel.
-2. Framework preset: Vite.
-3. Build command: `npm run build`
-4. Output directory: `dist`
+[`vercel.json`](vercel.json) is already configured:
 
-No environment variables or server configuration required.
+- Framework: Vite
+- Build command: `npm run build`
+- Output directory: `dist`
+
+Import the GitHub repository in Vercel, or from this directory run `npx vercel --prod` after `vercel login`. No environment variables or server configuration required.
 
 ---
 
@@ -210,7 +211,7 @@ No environment variables or server configuration required.
 src/
   algorithms/
     fifo.ts             # FIFO replacement policy
-    lru.ts              # LRU replacement policy
+    lru.ts              # LRU replacement policy (insertion-ordered Map)
     lfu.ts              # LFU replacement policy
     random.ts           # Random replacement policy
   simulation/
@@ -290,7 +291,8 @@ npm run test:watch  # Watch mode
 
 - This is a software simulation, not a hardware cache model. It does not model cache lines, associativity, or memory hierarchy.
 - Execution time measurements are browser-local `performance.now()` and reflect JavaScript overhead, not algorithmic cost.
-- The LFU implementation uses a linear scan for eviction (O(n)), not a min-heap. This is intentional for clarity at the scale of this simulation.
+- LRU uses an insertion-ordered `Map` so lookup, recency updates, and eviction of the oldest key are O(1).
+- The LFU implementation uses a linear scan for eviction (O(n)), not a min-heap. This is intentional for clarity at the scale of this simulation. Lookup remains O(1) via a frequency map.
 - The ML-guided module is a deterministic heuristic, not a trained model.
 - Random policy results are deterministic within a seed but vary across seeds.
 

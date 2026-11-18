@@ -9,7 +9,7 @@ export function ComplexityPanel() {
     },
     {
       name: "LRU",
-      strategy: "Recency",
+      strategy: "Recency (Map)",
       lookup: "O(1)",
       insert: "O(1)",
       evict: "O(1)",

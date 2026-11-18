@@ -13,6 +13,7 @@ interface ExperimentSnapshotProps {
   capacity: number;
   traceLength: number;
   seed: number;
+  pending?: boolean;
 }
 
 export function ExperimentSnapshot({
@@ -20,9 +21,17 @@ export function ExperimentSnapshot({
   capacity,
   traceLength,
   seed,
+  pending = false,
 }: ExperimentSnapshotProps) {
   return (
-    <div className="experiment-snapshot" aria-label="Current experiment configuration">
+    <div
+      className="experiment-snapshot"
+      aria-label={
+        pending
+          ? "Last run configuration; pending changes not yet simulated"
+          : "Last run configuration"
+      }
+    >
       <span className="snapshot-item">
         <span className="snapshot-label">Workload</span>
         <span className="snapshot-value">{WORKLOAD_LABELS[workload]}</span>
@@ -42,6 +51,9 @@ export function ExperimentSnapshot({
         <span className="snapshot-label">Seed</span>
         <span className="snapshot-value">{seed}</span>
       </span>
+      {pending && (
+        <span className="snapshot-pending">Last run — press Run to apply config</span>
+      )}
     </div>
   );
 }

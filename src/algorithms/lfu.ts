@@ -20,7 +20,7 @@ export class LFUPolicy implements CachePolicy {
   access(item: number): AccessEvent {
     const index = this.accessIndex++;
 
-    if (this.freq.has(item) && this.items.includes(item)) {
+    if (this.freq.has(item)) {
       this.freq.set(item, this.freq.get(item)! + 1);
 
       return {
