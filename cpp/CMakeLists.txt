@@ -18,6 +18,13 @@ add_library(replora_core STATIC ${REPLORA_CORE_SOURCES})
 target_include_directories(replora_core PUBLIC
                            "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
+# Same replora_core sources. cli/ only parses flags and prints engine output.
+add_executable(replora_cli cli/main.cpp)
+target_link_libraries(replora_cli PRIVATE replora_core)
+if(MINGW)
+  target_link_options(replora_cli PRIVATE -static)
+endif()
+
 include(CTest)
 
 include(FetchContent)
@@ -31,29 +38,40 @@ set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 if(BUILD_TESTING)
-  add_executable(replora_tests
+  function(replora_add_test_executable target)
+    add_executable(${target} ${ARGN})
+    target_link_libraries(${target} PRIVATE replora_core GTest::gtest_main)
+    if(MINGW)
+      # Keep the test binary off the shared MinGW runtime. An older
+      # libwinpthread earlier on PATH (for example from PostgreSQL) otherwise
+      # aborts the process at startup.
+      target_link_options(${target} PRIVATE -static)
+    endif()
+    target_compile_definitions(${target} PRIVATE
+                               REPLORA_GOLDEN_DIR="${CMAKE_SOURCE_DIR}/../tests/golden")
+  endfunction()
+
+  replora_add_test_executable(replora_tests
                  tests/smoke_test.cpp
                  tests/fifo_test.cpp
                  tests/lru_test.cpp
                  tests/lfu_test.cpp
                  tests/random_test.cpp
-                 tests/workloads_test.cpp)
-  target_link_libraries(replora_tests PRIVATE replora_core GTest::gtest_main)
-  if(MINGW)
-    # Keep the test binary off the shared MinGW runtime. An older
-    # libwinpthread earlier on PATH (for example from PostgreSQL) otherwise
-    # aborts the process at startup.
-    target_link_options(replora_tests PRIVATE -static)
-  endif()
-  target_compile_definitions(replora_tests PRIVATE
-                             REPLORA_GOLDEN_DIR="${CMAKE_SOURCE_DIR}/../tests/golden")
+                 tests/workloads_test.cpp
+                 tests/engine_test.cpp
+                 tests/engine_properties_test.cpp
+                 tests/cli_test.cpp)
+  add_dependencies(replora_tests replora_cli)
+  target_include_directories(replora_tests PRIVATE
+                             "${CMAKE_CURRENT_BINARY_DIR}/generated")
+  file(GENERATE
+       OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/generated/replora_cli_path.hpp"
+       CONTENT "#pragma once\nstatic constexpr const char* kReploraCliPath = R\"path($<TARGET_FILE:replora_cli>)path\";\n")
+  replora_add_test_executable(replora_slow_tests tests/engine_slow_test.cpp)
   include(GoogleTest)
-  gtest_discover_tests(replora_tests DISCOVERY_MODE PRE_TEST)
+  gtest_discover_tests(replora_tests DISCOVERY_MODE PRE_TEST PROPERTIES LABELS fast)
+  gtest_discover_tests(replora_slow_tests DISCOVERY_MODE PRE_TEST PROPERTIES LABELS slow)
 endif()
-
-# CLI placeholder. Same replora_core sources; do not add a second engine.
-# add_executable(replora_cli cli/main.cpp)
-# target_link_libraries(replora_cli PRIVATE replora_core)
 
 # WASM placeholder. Emscripten builds this target from the same cpp/src files.
 # add_executable(replora_wasm wasm/bindings.cpp)

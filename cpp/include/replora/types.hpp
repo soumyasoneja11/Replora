@@ -71,6 +71,8 @@ struct PolicyMetrics {
   double hitRate = 0.0;
   double missRate = 0.0;
   double executionTimeMs = 0.0;
+  // steady_clock around the access loop only. executionTimeMs is this value / 1000.
+  std::uint64_t executionTimeMicros = 0;
   std::uint64_t totalAccesses = 0;
   std::uint64_t cacheCapacity = 0;
   // Container-size estimate. Never process RSS. Zero until a policy fills it.
@@ -84,12 +86,20 @@ struct PolicyResult {
   std::vector<AccessEvent> events;
 };
 
-// Defaults match the lab: looping, capacity 4, length 100, seed 42.
+enum class PolicySelection : std::uint8_t { All = 0, One = 1 };
+
+// Defaults match the lab: looping, capacity 4, length 100, seed 42, all policies.
+// capacity and traceLength are signed so a negative value is a ConfigError.
+// If workloadName is non-empty it is parsed and replaces workload.
+// policyName is required when policySelection is One.
 struct SimulationConfig {
   WorkloadType workload = WorkloadType::Looping;
-  std::uint64_t capacity = 4;
-  std::uint64_t traceLength = 100;
+  std::int64_t capacity = 4;
+  std::int64_t traceLength = 100;
   std::uint32_t seed = 42;
+  PolicySelection policySelection = PolicySelection::All;
+  std::string policyName;
+  std::string workloadName;
 };
 
 // Structured validation failure (for example capacity 0). No exceptions in the result.

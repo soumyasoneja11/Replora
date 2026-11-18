@@ -4,6 +4,7 @@
 
 #include "replora/types.hpp"
 
+#include <cctype>
 #include <charconv>
 #include <cstdint>
 #include <fstream>
@@ -274,14 +275,48 @@ inline Json parseJson(std::string_view input) {
     }
 
     Json parseNumber() {
-      const char* first = in.data() + index;
-      const char* last = in.data() + in.size();
+      skip();
+      const std::size_t start = index;
+      if (index < in.size() && in[index] == '-') {
+        ++index;
+      }
+      if (index >= in.size() ||
+          !std::isdigit(static_cast<unsigned char>(in[index]))) {
+        fail("invalid number");
+      }
+      while (index < in.size() && std::isdigit(static_cast<unsigned char>(in[index]))) {
+        ++index;
+      }
+      if (index < in.size() && in[index] == '.') {
+        ++index;
+        if (index >= in.size() ||
+            !std::isdigit(static_cast<unsigned char>(in[index]))) {
+          fail("invalid number");
+        }
+        while (index < in.size() && std::isdigit(static_cast<unsigned char>(in[index]))) {
+          ++index;
+        }
+      }
+      if (index < in.size() && (in[index] == 'e' || in[index] == 'E')) {
+        ++index;
+        if (index < in.size() && (in[index] == '+' || in[index] == '-')) {
+          ++index;
+        }
+        if (index >= in.size() ||
+            !std::isdigit(static_cast<unsigned char>(in[index]))) {
+          fail("invalid number");
+        }
+        while (index < in.size() && std::isdigit(static_cast<unsigned char>(in[index]))) {
+          ++index;
+        }
+      }
+      // Store the integer prefix. Fractions exist on timing and rate fields.
       std::int64_t number = 0;
-      const std::from_chars_result parsed = std::from_chars(first, last, number);
+      const std::from_chars_result parsed =
+          std::from_chars(in.data() + start, in.data() + index, number);
       if (parsed.ec != std::errc{}) {
         fail("invalid number");
       }
-      index = static_cast<std::size_t>(parsed.ptr - in.data());
       Json value;
       value.kind = Json::Kind::Number;
       value.number = number;
