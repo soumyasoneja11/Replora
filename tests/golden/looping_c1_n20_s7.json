@@ -1,0 +1,700 @@
+{
+  "config": {
+    "workload": "looping",
+    "capacity": 1,
+    "traceLength": 20,
+    "seed": 7
+  },
+  "trace": [
+    1,
+    2,
+    3,
+    4,
+    1,
+    2,
+    3,
+    4,
+    1,
+    2,
+    3,
+    4,
+    1,
+    2,
+    3,
+    4,
+    1,
+    2,
+    3,
+    4
+  ],
+  "policies": {
+    "FIFO": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 20,
+      "evictions": 19
+    },
+    "LRU": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 20,
+      "evictions": 19
+    },
+    "LFU": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 20,
+      "evictions": 19
+    },
+    "RANDOM": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 4,
+          "cacheStateAfter": [
+            1
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 1,
+          "cacheStateAfter": [
+            2
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 2,
+          "cacheStateAfter": [
+            3
+          ]
+        },
+        {
+          "hit": false,
+          "evicted": true,
+          "victim": 3,
+          "cacheStateAfter": [
+            4
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 20,
+      "evictions": 19
+    }
+  }
+}

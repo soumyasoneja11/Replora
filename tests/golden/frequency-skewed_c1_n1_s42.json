@@ -1,0 +1,73 @@
+{
+  "config": {
+    "workload": "frequency-skewed",
+    "capacity": 1,
+    "traceLength": 1,
+    "seed": 42
+  },
+  "trace": [
+    1
+  ],
+  "policies": {
+    "FIFO": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    },
+    "LRU": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    },
+    "LFU": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    },
+    "RANDOM": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            1
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    }
+  }
+}

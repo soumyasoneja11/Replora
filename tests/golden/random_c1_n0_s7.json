@@ -1,0 +1,35 @@
+{
+  "config": {
+    "workload": "random",
+    "capacity": 1,
+    "traceLength": 0,
+    "seed": 7
+  },
+  "trace": [],
+  "policies": {
+    "FIFO": {
+      "accesses": [],
+      "hits": 0,
+      "misses": 0,
+      "evictions": 0
+    },
+    "LRU": {
+      "accesses": [],
+      "hits": 0,
+      "misses": 0,
+      "evictions": 0
+    },
+    "LFU": {
+      "accesses": [],
+      "hits": 0,
+      "misses": 0,
+      "evictions": 0
+    },
+    "RANDOM": {
+      "accesses": [],
+      "hits": 0,
+      "misses": 0,
+      "evictions": 0
+    }
+  }
+}

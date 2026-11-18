@@ -1,0 +1,73 @@
+{
+  "config": {
+    "workload": "bursty",
+    "capacity": 2,
+    "traceLength": 1,
+    "seed": 42
+  },
+  "trace": [
+    3
+  ],
+  "policies": {
+    "FIFO": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            3
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    },
+    "LRU": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            3
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    },
+    "LFU": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            3
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    },
+    "RANDOM": {
+      "accesses": [
+        {
+          "hit": false,
+          "evicted": false,
+          "victim": null,
+          "cacheStateAfter": [
+            3
+          ]
+        }
+      ],
+      "hits": 0,
+      "misses": 1,
+      "evictions": 0
+    }
+  }
+}
