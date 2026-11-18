@@ -36,7 +36,8 @@ if(BUILD_TESTING)
                  tests/fifo_test.cpp
                  tests/lru_test.cpp
                  tests/lfu_test.cpp
-                 tests/random_test.cpp)
+                 tests/random_test.cpp
+                 tests/workloads_test.cpp)
   target_link_libraries(replora_tests PRIVATE replora_core GTest::gtest_main)
   if(MINGW)
     # Keep the test binary off the shared MinGW runtime. An older
