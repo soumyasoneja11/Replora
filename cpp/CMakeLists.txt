@@ -31,8 +31,20 @@ set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 if(BUILD_TESTING)
-  add_executable(replora_tests tests/smoke_test.cpp)
+  add_executable(replora_tests
+                 tests/smoke_test.cpp
+                 tests/fifo_test.cpp
+                 tests/lru_test.cpp
+                 tests/lfu_test.cpp)
   target_link_libraries(replora_tests PRIVATE replora_core GTest::gtest_main)
+  if(MINGW)
+    # Keep the test binary off the shared MinGW runtime. An older
+    # libwinpthread earlier on PATH (for example from PostgreSQL) otherwise
+    # aborts the process at startup.
+    target_link_options(replora_tests PRIVATE -static)
+  endif()
+  target_compile_definitions(replora_tests PRIVATE
+                             REPLORA_GOLDEN_DIR="${CMAKE_SOURCE_DIR}/../tests/golden")
   include(GoogleTest)
   gtest_discover_tests(replora_tests DISCOVERY_MODE PRE_TEST)
 endif()

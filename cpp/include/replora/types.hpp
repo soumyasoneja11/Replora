@@ -46,8 +46,10 @@ struct AccessResult {
 };
 
 // Resident keys in structure order, plus a label such as "front=MRU".
+// frequencies is parallel to keys. Empty when the policy has no frequency counts.
 struct CacheState {
   std::vector<Key> keys;
+  std::vector<std::uint64_t> frequencies;
   std::string ordering;
 };
 
